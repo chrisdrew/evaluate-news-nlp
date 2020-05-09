@@ -12,3 +12,8 @@ import './styles/header.scss'
 alert("I EXIST");
 alert("I EXIST AGAIN");
 console.log("CHANGE!!");
+
+export {
+    checkForName,
+    handleSubmit
+}
