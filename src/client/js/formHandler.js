@@ -1,27 +1,42 @@
 
-let	url = encodeURIComponent('https://www.bbc.com/news/world-us-canada-52602580');
+let	url = {
+	link : ''
+}
+
+const postCityWeather = async(url='', data)=>{
+    const response = await fetch(url, {
+        method: 'POST', 
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        // Body data type must match "Content-Type" header        
+        body: JSON.stringify(data), 
+    });
+    try {
+		const newData = await response.json();
+		//let newText = newData.text.replace("\n", "<br><br>");
+		var newText = newData.text.replace( new RegExp( "\n", "g" ),"<br>");
+		console.log(newData);
+		document.getElementById('results').innerHTML = newText;
+        return newText
+    }catch(error) {
+        console.log(error);
+        return
+    }
+}
 
 const updateForm = async() =>{
-	const res = await fetch('http://localhost:8081/classify');
+	const res = await fetch(`http://localhost:8081/classify`);
 
     try{
         const data = await res.json();
-        console.log(data);
-        document.getElementById('results').innerHTML = data.text
+        document.getElementById('results').innerHTML = data.text;
         return
     } catch (e){
         console.log(e);
         return
     }
-	fetch(`http://localhost:8081/classify`)
-    .then(res => {
-		console.log(res);
-        return res.json()
-    })
-    .then(function(data) {
-		console.log(data);
-        document.getElementById('results').innerHTML = data.text
-    })
 }
 
 const handleSubmit = async(event) =>{
@@ -30,8 +45,11 @@ const handleSubmit = async(event) =>{
     // check what text was put into the form field
     let formText = document.getElementById('name').value
 
-    Client.checkForName(formText)
-	await updateForm();
+    // Client.checkForName(formText)
+	// await updateForm();
+	url.link = formText;
+	console.log(url.link)
+	await postCityWeather('http://localhost:8081/classifyP', url);
 	console.log("::: Form Submitted :::");
 	
 	

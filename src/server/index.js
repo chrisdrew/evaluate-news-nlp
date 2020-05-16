@@ -51,22 +51,28 @@ const classifyAPI = async (url) => {
 } 
 
 
-// app.get('/classify', function (req, res){
-
-// 	var searchParams = new URLSearchParams(req.originalUrl);
-// 	console.log( searchParams );
-// 	classifyAPI( searchParams.get('link') );
-//     res.send(getResponse);
-// });
-
 app.get('/classify', async (req, res) => {	
 	//var searchParams = new URLSearchParams(req.originalUrl);
+	//let linkURL = searchParams.get('?link');
 	//console.log( searchParams );
-//searchParams.get('link')
+	console.log('req.params');
+	console.log(req.params);
 	await classifyAPI( 'https://www.bbc.com/news/world-us-canada-52602580' );
 	res.send(getResponse);
 	return
-  })
+})
+
+app.post('/classifyP', async (req, res) => {
+	console.log('req.body');
+	console.log(req.body.link);
+    //projectData.push(newEntry);
+	//console.log(projectData);
+	await classifyAPI( req.body.link );
+	
+	// await classifyAPI( req.body.link );
+	res.send(getResponse);
+    res.send();
+});
 
 
 app.get('/', function (req, res) {
