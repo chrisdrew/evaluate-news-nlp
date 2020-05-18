@@ -22,11 +22,24 @@
 					<li>https://www.bbc.com/news/world-asia-52631071</li>
 					<li>https://www.bbc.com/news/world-europe-52631045</li>
 				</ul>
-                <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)">
-                </form>
+                <form class="form" onsubmit="return Client.handleSubmit(event)">
+					<input id="name" type="url" name="input" value="" onblur="onBlur()" placeholder="https://example.com"pattern="https://.*"  >
+					<input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)">
+				</form>
+				<span id="warning"></span>
             <section>
+			<section>
+				<ul>
+					<li>Polarity: <span id="polarity"></span></li>
+					<li>Polarity confidence: <span id="polarity_confidence"></span></li>
+					<li>Subjectivity: <span id="subjectivity"></span></li>
+					<li>Subjectivity confidence: <span id="subjectivity_confidence"></span></li>
+					<br>
+					<li>Code: <span id="code"></span></li>
+					<li>Label: <span id="label"></span></li>
+
+				</ul>
+			</section>
 
             <section>
                 <strong>Form Results:</strong>

@@ -15,6 +15,8 @@ var json = {
 }
 
 let getResponse;
+let sentimentObj;
+let taxonomyObj;
 
 const app = express()
 app.use(cors())
@@ -34,9 +36,8 @@ var textapi = new aylien({
 	application_id: process.env.API_ID,
 	application_key: process.env.API_KEY
 });
+
 const classifyAPI = async (url) => {
-	console.log('url is');
-	console.log(url);
 	textapi.classify({
 		'url': url
 	  }, 
@@ -50,27 +51,53 @@ const classifyAPI = async (url) => {
 	});
 } 
 
+const sentimentAPI = async (url) => {
+	textapi.sentiment({
+		'url': url,
+		mode: 'Document'
+	  }, 
+	  function(error, response) {
+		if (error === null) {
+			sentimentObj = response;
+			console.log('sentimentObj');
+			return sentimentObj
+		}else{
+			console.log(error)
+		}
+	});
+} 
 
-app.get('/classify', async (req, res) => {	
-	//var searchParams = new URLSearchParams(req.originalUrl);
-	//let linkURL = searchParams.get('?link');
-	//console.log( searchParams );
-	console.log('req.params');
-	console.log(req.params);
-	await classifyAPI( 'https://www.bbc.com/news/world-us-canada-52602580' );
-	res.send(getResponse);
-	return
-})
+const classifyTaxAPI = async (url) => {
+	textapi.classify({
+		'taxonomy': 'iab-qag',
+		'url': url
+	  }, 
+	  function(error, response) {
+		if (error === null) {
+			taxonomyObj = response;
+			console.log('taxonomyObj');
+			return taxonomyObj
+		}else{
+			console.log(error)
+		}
+	});
+} 
 
-app.post('/classifyP', async (req, res) => {
-	console.log('req.body');
-	console.log(req.body.link);
-    //projectData.push(newEntry);
-	//console.log(projectData);
-	await classifyAPI( req.body.link );
-	
-	// await classifyAPI( req.body.link );
-	res.send(getResponse);
+const mergeObject = async()=>{
+	try {	
+		getResponse= Object.assign(sentimentObj,taxonomyObj);
+		console.log(getResponse);
+		return getResponse
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+app.post('/aylien', async (req, res) => {
+	await sentimentAPI( req.body.link );
+	// await classifyTaxAPI( req.body.link );
+	// await mergeObject();
+	res.send(sentimentObj);
     res.send();
 });
 

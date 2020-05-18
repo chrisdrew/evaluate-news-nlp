@@ -1,4 +1,7 @@
 import { checkForName } from './js/nameChecker'
+import { validURL } from './js/API'
+import { printUserInput } from './js/API'
+import { classify } from './js/API'
 import { handleSubmit } from './js/formHandler'
 
 import './styles/resets.scss'
@@ -11,6 +14,9 @@ console.log(checkForName);
 
 
 export {
-    checkForName,
+	checkForName,
+	validURL,
+	classify,
+	printUserInput,
     handleSubmit
 }
