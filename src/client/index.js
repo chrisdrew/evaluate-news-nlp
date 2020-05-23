@@ -10,10 +10,13 @@ import './styles/form.scss'
 import './styles/footer.scss'
 import './styles/header.scss'
 
+import logo from './img/pngwave.png';
+
 export {
 	checkForName,
 	validURL,
 	classify,
 	printUserInput,
-	handleSubmit
+	handleSubmit,
+	logo
 }

@@ -20,8 +20,8 @@ const validURL = async(url)=>{
 	}
 }
 
-async function classify(url='', data){
-// const classify = async(url='', data)=>{
+
+const classify = async(url='', data)=>{
     const response = await fetch(url, {
         method: 'POST', 
         credentials: 'same-origin',
@@ -47,7 +47,6 @@ async function classify(url='', data){
 }
 
 const printUserInput = async() =>{
-	console.log('printUserInput');
 	// console.log(userViewedContet);
 	document.getElementById('polarity').innerHTML = userViewedContet.polarity;
 	document.getElementById('polarity_confidence').innerHTML = userViewedContet.polarity_confidence;
