@@ -1,5 +1,4 @@
-let userViewedContet
-
+let userViewedContet;
 
 const validURL = async(url)=>{
 	console.log(`API url is ${url}`);
@@ -21,7 +20,8 @@ const validURL = async(url)=>{
 	}
 }
 
-const classify = async(url='', data)=>{
+async function classify(url='', data){
+// const classify = async(url='', data)=>{
     const response = await fetch(url, {
         method: 'POST', 
         credentials: 'same-origin',
@@ -58,14 +58,17 @@ const printUserInput = async() =>{
 }
 
 const errorHandle = function(message, warning){
+	const label = document.getElementById('warning');
 	switch(warning){
 		case 'red' :
-			// document.getElementById('form').classList.add('warning__red');
-			document.getElementById('warning').innerHTML = message;
+			label.classList.remove('warning-yellow');
+			label.classList.add('warning-red');
+			label.innerHTML = message;
 		break
 		case 'yellow':
-			// document.getElementById('form').classList.add('warning__red');
-			document.getElementById('warning').innerHTML = message;
+			label.classList.remove('warning-red');
+			label.classList.add('warning-yellow');
+			label.innerHTML = message;
 		break
 	}
 }

@@ -3,30 +3,30 @@ let	url = {
 	link : ''
 }
 
-const updateForm = async() =>{
-	const res = await fetch(`http://localhost:8081/classify`);
-
-    try{
-        const data = await res.json();
-        document.getElementById('results').innerHTML = data.text;
-        return
-    } catch (e){
-        console.log(e);
-        return
-    }
+const handleSubmit = async(e) =>{
+	try {
+		e.preventDefault();
+		let formText = document.getElementById('name').value;
+		console.log(`formText `)
+		console.log(`formText is '${formText}'`)
+		url.link = formText;
+		callAPI();
+	} catch (error) {
+		return error
+	}	
 }
 
-const handleSubmit = async(e) =>{
-	e.preventDefault()
-	console.log('handleSubmit');
-    let formText = document.getElementById('name').value
-	url.link = formText;
-	console.log(url.link)
-	callAPI()
-	.catch(e => {
+const handleSubmitTest = async(link) =>{
+	try {
+		e.preventDefault();
+		let formText = document.getElementById('name').value;
+		console.log(`formText `)
+		console.log(`formText is '${formText}'`)
+		url.link = formText;
+		callAPI();
+	} catch (error) {
 		return e
-	})
-	
+	}
 }
 
 const callAPI = async()=>{
@@ -36,6 +36,5 @@ const callAPI = async()=>{
 	throw new Error("something went wrong!");
 }
 
+export { handleSubmit, handleSubmitTest }
 
-
-export { handleSubmit }

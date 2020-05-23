@@ -2,7 +2,7 @@ body {
     display: flex;
     flex-direction: column;
 	min-height: 100vh;
-	background-color: salmon;
+	background-color: #f1faee;
 }
 
 main {
@@ -12,4 +12,20 @@ main {
 section {
     max-width: 800px;
     margin: 50px auto;
+}
+
+.hero{
+	display: flex;
+	.logo{
+		flex-grow: 1;
+		img{
+			height: 100px;
+		}
+	}
+
+	h1{
+		flex-grow: 2;
+		margin: auto;
+		font-size: 2em;
+	}
 }

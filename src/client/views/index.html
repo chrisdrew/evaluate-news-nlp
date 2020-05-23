@@ -8,44 +8,40 @@
     <body>
 
         <header>
-            <div class="">
-                Logo
-            </div>
-            <div class="">
+            <div class="nav">
                 navigation
             </div>
         </header>
 
         <main>
+			<section class="hero">
+				<div class="logo">
+					<img src="img/pngwave.png" >
+				</div>
+				<h1>Welcome to Aylien demo</h1>
+			</section>
             <section>
 				<ul>
+					<li>Here are some demo links you can try.</li>
 					<li>https://www.bbc.com/news/world-asia-52631071</li>
 					<li>https://www.bbc.com/news/world-europe-52631045</li>
 				</ul>
                 <form class="form" onsubmit="return Client.handleSubmit(event)">
-					<input id="name" type="url" name="input" value="" onblur="onBlur()" placeholder="https://example.com"pattern="https://.*"  >
+					<input id="name" type="url" name="input" value="" onblur="onBlur()" placeholder="https://example.com"  >
 					<input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)">
+					<div id="warning" class="warning">I am a warning</div>
 				</form>
-				<span id="warning"></span>
-            <section>
+            </section>
 			<section>
-				<ul>
+				<ul class="news-results">
 					<li>Polarity: <span id="polarity"></span></li>
 					<li>Polarity confidence: <span id="polarity_confidence"></span></li>
 					<li>Subjectivity: <span id="subjectivity"></span></li>
 					<li>Subjectivity confidence: <span id="subjectivity_confidence"></span></li>
-					<br>
-					<li>Code: <span id="code"></span></li>
-					<li>Label: <span id="label"></span></li>
-
+					<!-- <li>Code: <span id="code"></span></li>
+					<li>Label: <span id="label"></span></li> -->
 				</ul>
 			</section>
-
-            <section>
-                <strong>Form Results:</strong>
-                <div id="results">
-				</div>
-            </section>
         </main>
 
         <footer>
