@@ -1,12 +1,53 @@
+$shared-padding: 5px 20px;
+
+@mixin warning-style($property) {
+	display: block;
+	border: solid 2px $property;
+	background-color: lighten($property, 30%);
+	padding: $shared-padding;
+	color: $property;
+}
+
+
 form {
     border: 1px solid #545454;
     border-radius: 3px;
-    padding: 40px;
+	padding: 40px;
+	
+	input {
+		padding: $shared-padding;
+		width: 100%;
+		box-sizing : border-box;
+		line-height: 16px;
+		margin: 10px 0;
+
+		&[type=url]{
+			border-radius: 4px;
+		}
+	}
 }
 
-input {
-    padding: 5px 20px;
-    width: 100%;
-    line-height: 16px;
-    margin: 10px 0;
+.warning{
+	display: none;
+
+	&-red{
+		@include warning-style(red);
+	}
+
+	&-yellow{
+		@include warning-style(#fcbf49);
+	}
+}
+
+.news-results{
+	padding: $shared-padding;
+
+		li{
+			@include warning-style(#007bff);
+			padding: 20px;
+			font-weight: 800;
+		}
+		:not(:last-child) {
+			border-bottom: none;
+		}
 }

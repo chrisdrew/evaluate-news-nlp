@@ -1,5 +1,10 @@
 header {
     display: flex;
     justify-content: space-between;
-    padding: 10px 40px;
+	padding: 10px 40px;
+	border-bottom: solid 1px #ccc;
+
+	img{
+		height: 50px;
+	}
 }

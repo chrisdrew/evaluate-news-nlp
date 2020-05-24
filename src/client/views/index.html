@@ -3,50 +3,59 @@
     <head>
         <meta charset="utf-8">
         <title>Test</title>
-        <link rel="stylesheet" href="/styles/resets.css">
-        <link rel="stylesheet" href="/styles/base.css">
-        <link rel="stylesheet" href="/styles/header.css">
-        <link rel="stylesheet" href="/styles/form.css">
-        <link rel="stylesheet" href="/styles/footer.css">
     </head>
 
     <body>
 
         <header>
-            <div class="">
-                Logo
-            </div>
-            <div class="">
+            <div class="nav">
                 navigation
             </div>
         </header>
 
         <main>
+			<section class="hero">
+				<div class="logo">
+					<img src="img/pngwave.png" >
+				</div>
+				<h1>Welcome to Aylien demo</h1>
+			</section>
             <section>
-                <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)">
-                </form>
-            <section>
-
-            <section>
-                <strong>Form Results:</strong>
-                <div id="results"></div>
+				<ul>
+					<li>Here are some demo links you can try.</li>
+					<li>https://www.bbc.com/news/world-asia-52631071</li>
+					<li>https://www.bbc.com/news/world-europe-52631045</li>
+				</ul>
+                <form class="form" onsubmit="return Client.handleSubmit(event)">
+					<input id="name" type="url" name="input" value="" onblur="onBlur()" placeholder="https://example.com"  >
+					<input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)">
+					<div id="warning" class="warning">I am a warning</div>
+				</form>
             </section>
+			<section>
+				<ul class="news-results">
+					<li>Polarity: <span id="polarity"></span></li>
+					<li>Polarity confidence: <span id="polarity_confidence"></span></li>
+					<li>Subjectivity: <span id="subjectivity"></span></li>
+					<li>Subjectivity confidence: <span id="subjectivity_confidence"></span></li>
+					<!-- <li>Code: <span id="code"></span></li>
+					<li>Label: <span id="label"></span></li> -->
+				</ul>
+			</section>
         </main>
 
         <footer>
             <p>This is a footer</p>
-        </footer>
-
-        <script>
-            // Check that service workers are supported
-            if ('serviceWorker' in navigator) {
-                // Use the window load event to keep the page load performant
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/service-worker.js');
-                });
-            }
-        </script>
+		</footer>
+		
+		<script>
+			// Check that service workers are supported
+			if ('serviceWorker' in navigator) {
+				// Use the window load event to keep the page load performant
+				window.addEventListener('load', () => {
+					navigator.serviceWorker.register('/service-worker.js');
+				});
+			}
+		</script>
     </body>
 </html>

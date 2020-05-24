@@ -1,19 +1,40 @@
-function handleSubmit(event) {
-    event.preventDefault()
 
-    // check what text was put into the form field
-    let formText = document.getElementById('name').value
-
-    Client.checkForName(formText)
-
-    console.log("::: Form Submitted :::")
-    fetch('http://localhost:8081/test')
-    .then(res => {
-        return res.json()
-    })
-    .then(function(data) {
-        document.getElementById('results').innerHTML = data.message
-    })
+let	url = {
+	link : ''
 }
 
-export { handleSubmit }
+const handleSubmit = async(e) =>{
+	try {
+		e.preventDefault();
+		let formText = document.getElementById('name').value;
+		console.log(`formText `)
+		console.log(`formText is '${formText}'`)
+		url.link = formText;
+		callAPI();
+	} catch (error) {
+		return error
+	}	
+}
+
+const handleSubmitTest = async(link) =>{
+	try {
+		e.preventDefault();
+		let formText = document.getElementById('name').value;
+		console.log(`formText `)
+		console.log(`formText is '${formText}'`)
+		url.link = formText;
+		callAPI();
+	} catch (error) {
+		return e
+	}
+}
+
+const callAPI = async()=>{
+	await Client.validURL(url.link);
+	await Client.classify('http://localhost:8081/aylien', url);
+	await Client.printUserInput();
+	throw new Error("something went wrong!");
+}
+
+export { handleSubmit, handleSubmitTest }
+
